@@ -2,3 +2,4 @@ node_modules/
 session/
 config.env
 package-lock.json
+Lib/downloads/
