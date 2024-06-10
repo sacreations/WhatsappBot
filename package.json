@@ -27,7 +27,7 @@
     "dotenv": "^16.4.5"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "pm2 start index.js --name Bot && pm2 logs Bot"
   },
   "keywords": [
     "bot",

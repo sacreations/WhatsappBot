@@ -29,7 +29,7 @@
 
 - Start the bot:
 
-      pm2 start npm --name "app name" -- start
+      npm start
 
 - Stop and Restart:
 
