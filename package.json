@@ -1,0 +1,39 @@
+{
+  "name": "whatsapp_bot",
+  "version": "1.0.0",
+  "description": "Simple Whatsapp Bot With Baileys",
+  "main": "index.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.12.0",
+    "@whiskeysockets/baileys": "^6.7.4",
+    "axios": "^1.4.0",  
+    "chalk": "^5.3.0",
+    "esm": "^3.2.25",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
+    "ffmpeg-static": "^5.2.0",
+    "figlet": "^1.7.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "fs": "^0.0.1-security", 
+    "link-preview-js": "^3.0.5",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.7",
+    "path": "^0.12.7",
+    "qrcode": "^1.5.3",
+    "qrcode-terminal": "^0.12.0",
+    "socket.io": "^4.7.5",
+    "valid-url": "^1.0.9",
+    "ytdl-core": "^4.11.5",
+    "dotenv": "^16.4.5"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "bot",
+    "whatsapp",
+    "baileys",
+    "whatsapp bot"
+  ],
+  "author": "S.A_Creations"
+}
