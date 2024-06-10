@@ -1,11 +1,47 @@
 ## HOW TO USE
 
-## <b> 1. Clone the repository </b>
+- Install git, ffmpeg, and curl:
 
-## <b> 2. Install git, ffmpeg, and curl </b>
+      sudo apt -y update && sudo apt -y upgrade
+      sudo apt -y install git ffmpeg curl
 
-sudo apt -y update && sudo apt -y upgrade
-sudo apt -y install git ffmpeg curl
+- Install nodejs:
 
-## <b> 3. Install nodejs </b>
+      sudo apt -y remove nodejs
+      curl -fsSl https://deb.nodesource.com/setup_lts.x | sudo bash - && sudo apt -y install nodejs
 
+
+- Install pm2:
+
+      npm install -g pm2
+
+- Clone the repository and install packages:
+
+      git clone https://github.com/sacreations/WhatsappBot WhatsappBot
+      cd WhatsappBot
+      npm i
+
+- Rename config.env.example to config.env
+  
+- Edit the `config.env` using nano or any text editor
+
+       nano config.env
+
+- Start the bot:
+
+      pm2 start npm --name "app name" -- start
+
+- Stop and Restart:
+
+  You can stop and restart using pm2 commands (replace 0 with your pm2 process id)
+
+  For Stop -
+
+      pm2 stop 0
+
+  For Restart -
+  
+      pm2 stop 0
+
+
+       
