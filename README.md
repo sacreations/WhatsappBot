@@ -12,7 +12,8 @@ Welcome to the Simple WhatsApp Bot project! This bot leverages the Baileys libra
 
 - Connect to WhatsApp Web using Baileys
 - Send and receive messages
-- Basic command handling
+- Enable automatic media downloads
+- Basic command handling ( coming soon )
 
 
 ## Installation
