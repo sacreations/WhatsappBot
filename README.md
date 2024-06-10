@@ -1,4 +1,23 @@
-## HOW TO USE
+<img src = "https://i.pinimg.com/originals/72/e9/c3/72e9c33f3327bfb2485c80b3188e41fb.gif">
+
+# Simple WhatsApp Bot with Baileys
+
+Welcome to the Simple WhatsApp Bot project! This bot leverages the Baileys library to interact with WhatsApp Web, offering basic automation and messaging capabilities. 
+<br>
+<br>
+
+**Please note that this project is still under development and not yet finished.**
+
+## Features
+
+- Connect to WhatsApp Web using Baileys
+- Send and receive messages
+- Basic command handling
+
+
+## Installation
+
+To get started with the Simple WhatsApp Bot, follow these steps:
 
 - Install git, ffmpeg, and curl:
 
