@@ -40,12 +40,12 @@ const message = {
         }
     },
 
-    sendAudio: async (link,m, socket) => {
+    sendAudio: async (link,m,socket) => {
         try {
             return await socket.sendMessage(
                 m.key.remoteJid,
                 {
-                    video: { url: link },
+                    audio: { url: link },
                     mimetype: 'audio/mpeg'
                 },
                 { quoted: m }
