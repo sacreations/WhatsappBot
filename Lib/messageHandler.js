@@ -1,31 +1,39 @@
 const message = {
-    react: async (text, m, socket) => {
+    react: async (text, m, sock) => {
         try {
-            return await socket.sendMessage(m.key.remoteJid, { react: { text: `${text}`, key: m.key } });
+            return await sock.sendMessage(m.key.remoteJid, { react: { text: `${text}`, key: m.key } });
+        } catch (error) {
+            console.error("An error occurred:", error);
+            
+        }
+    },
+    reply: async (text, m, sock) => {
+        try {
+            return await sock.sendMessage(m.key.remoteJid, { text: `${text}`},{ quoted: m });
         } catch (error) {
             console.error("An error occurred:", error);
             
         }
     },
 
-    sendMessage: async (content, m, socket, number = null) => {
+    sendMessage: async (text, sock, number = null, m = null ) => {
         try {
             if (m) {
-                return await socket.sendMessage(
-                    m.key.remoteJid,
-                    content,
-                    { quoted: m }
-                );
+                return await sock.sendMessage(m.key.remoteJid, { text: text });
+            } else if (number) {
+                return await sock.sendMessage(number, { text: text });
+            } else {
+                throw new Error("No recipient information provided.");
             }
         } catch (error) {
             console.error("An error occurred:", error);
-            
         }
     },
 
-    sendVideo: async (link, caption, m, socket) => {
+
+    sendVideo: async (link, caption = null, m, sock) => {
         try {
-            return await socket.sendMessage(
+            return await sock.sendMessage(
                 m.key.remoteJid,
                 {
                     video: { url: link },
@@ -40,9 +48,9 @@ const message = {
         }
     },
 
-    sendAudio: async (link,m,socket) => {
+    sendAudio: async (link,m,sock) => {
         try {
-            return await socket.sendMessage(
+            return await sock.sendMessage(
                 m.key.remoteJid,
                 {
                     audio: { url: link },
