@@ -1,7 +1,7 @@
 const ffmpeg = require('fluent-ffmpeg');
 const ffmpegPath = require('ffmpeg-static');
-const {ytvdl,ytadl} = require('./Download_Functions/youtubedl');
-const tiktokdl = require('./Download_Functions/tiktokdl');
+const {ytvdl,ytadl} = require('./Functions/Download_Functions/youtubedl');
+const tiktokdl = require('./Functions/Download_Functions/tiktokdl');
 const { updateDatabase } = require('./Database/mysql');
 
 

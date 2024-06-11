@@ -11,6 +11,7 @@ const config = {
     db_update:process.env.DB_UPDATE,
     auto_reply:process.env.AUTO_REPLY,
     start_message:process.env.DISABLE_START_MESSAGE,
+    PREFIX:process.env.PREFIX,
 
 
     // Databases

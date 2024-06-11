@@ -4,6 +4,9 @@ const { makeWASocket, useMultiFileAuthState, DisconnectReason, makeCacheableSign
 const { Boom } = require("@hapi/boom");
 const { handleAutoReply } = require('./Lib/autoReply');
 const config = require('./Config');
+const { bot, handleMessage } = require('./Lib/commandHandler'); // Add this line
+const fs = require('fs');
+
 
 
 const startbot = async () => {
@@ -89,9 +92,15 @@ const restartBot = async (logger, saveCreds) => {
 };
 
 const handleAllEvents = async (socket) => {
+
+    const commandFiles = fs.readdirSync(path.join(__dirname, 'plugins')).filter(file => file.endsWith('.js'));
+    for (const file of commandFiles) {
+        require(`./plugins/${file}`);
+    }
+
     socket.ev.on('group-participants.update', async (update) => {
-        // Handle group participant updates here
-        await greetings(socket, update);
+
+        // await greetings(socket, update);
     });
 
     socket.ev.on('messages.upsert', async ({ messages }) => {
@@ -112,6 +121,8 @@ const handleAllEvents = async (socket) => {
 
             // Handle your message events here
             await handleAutoReply(m, socket ,msg ,number);
+
+            await handleMessage(m, socket);
 
         } catch (error) {
             console.error('Error handling message upsert:', error);
