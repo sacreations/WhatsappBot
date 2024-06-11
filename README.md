@@ -22,7 +22,7 @@ Welcome to the Simple WhatsApp Bot project! This bot leverages the Baileys libra
 
 ## Installation
 
-To get started with the Simple WhatsApp Bot, follow these steps:
+To get started with the WhatsApp Bot, follow these steps:
 
 
 - Install nodejs:
