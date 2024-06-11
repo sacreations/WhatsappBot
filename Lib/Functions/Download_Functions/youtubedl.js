@@ -99,7 +99,7 @@ async function ytadl(link) {
         const info = await ytdl.getInfo(link);
         const title = info.videoDetails.title;
         const filename = generateRandomFilename();
-        const filePath = path.resolve(__dirname, '../', 'downloads', `${filename}.mp3`);
+        const filePath = path.resolve(__dirname, '../../', 'downloads', `${filename}.mp3`);
 
         return new Promise((resolve, reject) => {
             // Download audio stream
