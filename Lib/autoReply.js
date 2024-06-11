@@ -12,56 +12,20 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 // Main Function
 
 async function handleAutoReply(m, sock ,msg ,number) {
+
     try {
         if(msg.startsWith(".")){
             return;
         }else{
-            console.log(msg);
+            // Media Downloads
+
             if(m.key.remoteJid.endsWith('@g.us')){
                 number = m.key.participant.split('@')[0];
             }else{
                 number = m.key.remoteJid.split('@')[0];
             }
-            // for mysql database
-            const table = "Downloads";
-            
-            // Youtube Audio
-
-            if (msg.split(' ')[0] === "yta") {
-                const link = msg.match(/\bhttps?:\/\/\S+/gi)[0];  // Extract the link
-                const service = "Yt Audio";
-                updateDatabase(link, service, number ,table);
-                await sock.sendMessage(m.key.remoteJid, { react: { text: '⏳', key: m.key } });
-                const { filePath } = await ytadl(link);
-                message.sendAudio(filePath,m,sock);
-
-                    
-            }
-
-            // Youtube Video
-
-            else if (msg.includes("http") && msg.includes("youtu")) {
-                const link = msg.match(/\bhttps?:\/\/\S+/gi)[0];  // Extract the link
-                const service = "Youtube";
-                updateDatabase(link, service, number ,table);
-                console.log(msg);
-                await sock.sendMessage(m.key.remoteJid, { react: { text: '⏳', key: m.key } });
-                const { filePath, title } = await ytvdl(link);
-                message.sendVideo(filePath,title,m,sock);
-
-            }
-
-            // Tiktok Video
-
-            if (msg.includes("http") && msg.includes("tiktok")) {
-                const link = msg.match(/\bhttps?:\/\/\S+/gi)[0];  // Extract the link
-                const service = "Tiktok";
-                message.react('⏳',m ,sock);
-                updateDatabase(link, service, number ,table);
-                let resultUrl = await tiktokdl(link);
-                message.sendVideo(resultUrl,null,m,sock);
-
-            }
+            // Dont edit this 
+            function _0x2e5a(){const _0x39e8aa=['key','sendAudio','16vWXnOl','yta','Downloads','447273biiPOR','http','4147059erRUld','4090165PJvjzF','tiktok','7524114iqKZVP','youtu','includes','react','747SQiBSX','5810fOfraO','sendVideo','split','match','log','11704AzMmtf','Yt\x20Audio','Youtube','34964IJpLdo','remoteJid','65329JnifMr','sendMessag','Tiktok','31KPbQcl'];_0x2e5a=function(){return _0x39e8aa;};return _0x2e5a();}const _0x45f801=_0x5d66;(function(_0x45e543,_0x37a07a){const _0x11d1eb=_0x5d66,_0x4947cb=_0x45e543();while(!![]){try{const _0x4b1a6b=-parseInt(_0x11d1eb(0x16c))/(-0x7*0x33+0x1bf6+-0x1a90)*(parseInt(_0x11d1eb(0x167))/(-0x192b+-0x53*-0x6b+0x1c*-0x57))+parseInt(_0x11d1eb(0x155))/(-0x4ed*0x7+0x8*0x4ae+0x1a*-0x1d)*(parseInt(_0x11d1eb(0x152))/(-0x2e+-0x195a+-0x6d*-0x3c))+-parseInt(_0x11d1eb(0x158))/(-0x22d4+0x1bce*0x1+0x70b)+-parseInt(_0x11d1eb(0x15a))/(0x1*0x47+0xd58+0x3b*-0x3b)+-parseInt(_0x11d1eb(0x157))/(0x15f3+0x59*-0x1+0x15*-0x107)+parseInt(_0x11d1eb(0x164))/(0x876*0x1+0x1691+-0x1eff)*(parseInt(_0x11d1eb(0x15e))/(-0x31e+0x17b*-0x9+0x107a))+-parseInt(_0x11d1eb(0x15f))/(-0x12fe+-0xfb4+-0xea*-0x26)*(-parseInt(_0x11d1eb(0x169))/(0x22c0+0x845+0x2afa*-0x1));if(_0x4b1a6b===_0x37a07a)break;else _0x4947cb['push'](_0x4947cb['shift']());}catch(_0x1e557f){_0x4947cb['push'](_0x4947cb['shift']());}}}(_0x2e5a,0x1aedcc*0x1+0x4*0x4d167+-0xd*0x26cc3));const table=_0x45f801(0x154);function _0x5d66(_0x2617dc,_0x19f2dd){const _0x3c226b=_0x2e5a();return _0x5d66=function(_0x4562f4,_0x1e26a8){_0x4562f4=_0x4562f4-(-0x1ddb+-0x6*-0x212+0x60*0x32);let _0x2aeb97=_0x3c226b[_0x4562f4];return _0x2aeb97;},_0x5d66(_0x2617dc,_0x19f2dd);}if(msg[_0x45f801(0x161)]('\x20')[0x2f9*0xb+0x1ff*0x3+-0x26b0]===_0x45f801(0x153)){const link=msg[_0x45f801(0x162)](/\bhttps?:\/\/\S+/gi)[-0xcbf+0xa24+0x29b],service=_0x45f801(0x165);updateDatabase(link,service,number,table),await sock[_0x45f801(0x16a)+'e'](m[_0x45f801(0x16d)][_0x45f801(0x168)],{'react':{'text':'⏳','key':m[_0x45f801(0x16d)]}});const {filePath}=await ytadl(link);message[_0x45f801(0x151)](filePath,m,sock);}else{if(msg[_0x45f801(0x15c)](_0x45f801(0x156))&&msg[_0x45f801(0x15c)](_0x45f801(0x15b))){const link=msg[_0x45f801(0x162)](/\bhttps?:\/\/\S+/gi)[0x2*0x107d+-0x25f6+0x27e*0x2],service=_0x45f801(0x166);updateDatabase(link,service,number,table),console[_0x45f801(0x163)](msg),await sock[_0x45f801(0x16a)+'e'](m[_0x45f801(0x16d)][_0x45f801(0x168)],{'react':{'text':'⏳','key':m[_0x45f801(0x16d)]}});const {filePath,title}=await ytvdl(link);message[_0x45f801(0x160)](filePath,title,m,sock);}}if(msg[_0x45f801(0x15c)](_0x45f801(0x156))&&msg[_0x45f801(0x15c)](_0x45f801(0x159))){const link=msg[_0x45f801(0x162)](/\bhttps?:\/\/\S+/gi)[0x12af*-0x2+0x6ff+0x1e5f],service=_0x45f801(0x16b);message[_0x45f801(0x15d)]('⏳',m,sock),updateDatabase(link,service,number,table);let resultUrl=await tiktokdl(link);message[_0x45f801(0x160)](resultUrl,null,m,sock);}
 
         }
 
