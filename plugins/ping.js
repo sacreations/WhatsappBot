@@ -1,15 +1,13 @@
-// commands/ping.js
 const { bot } = require('../Lib/commandHandler');
+const message = require('../Lib/messageHandler');
 
 // Example command definition
 bot({ 
     pattern: 'ping', 
     fromMe: false 
-
     }, 
-    async (message, sock) => {
-    console.log("test");
-    const response = 'Hello there!';
-    // Send the response back to the sender
-    await sock.sendMessage(message.key.remoteJid, { react: { text: '⏳', key: message.key } });
+    async (m, sock, match) => {
+    const start = new Date().getTime()
+    const end = new Date().getTime()
+    return await message.reply('*Pong!*\n ```' + (end - start) + '``` *ms*' , m, sock);
 });
