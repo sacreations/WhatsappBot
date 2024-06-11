@@ -30,32 +30,32 @@ To get started with the WhatsApp Bot, follow these steps:
 
 - Install without a script
 
-      - Install nodejs:
+     - Install nodejs:
 
             sudo apt -y update && sudo apt -y upgrade
             sudo apt -y remove nodejs
             curl -fsSl https://deb.nodesource.com/setup_lts.x | sudo bash - && sudo apt -y install nodejs
 
 
-      - Install pm2:
+     - Install pm2:
 
             npm install -g pm2
 
-      - Clone the repository and install packages:
+     - Clone the repository and install packages:
 
             git clone https://github.com/sacreations/WhatsappBot WhatsappBot
             cd WhatsappBot
             npm i
 
-      - Rename config.env.example to config.env
+     - Rename config.env.example to config.env
       
-      - Edit the `config.env` using nano or any text editor
+       - Edit the `config.env` using nano or any text editor
 
-            nano config.env
+             nano config.env
 
-      - Start the bot:
+       - Start the bot:
 
-            npm start
+             npm start
 
 - Stop and Restart:
 
