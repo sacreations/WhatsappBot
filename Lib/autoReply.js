@@ -3,6 +3,7 @@ const ffmpegPath = require('ffmpeg-static');
 const {ytvdl,ytadl} = require('./Functions/Download_Functions/youtubedl');
 const tiktokdl = require('./Functions/Download_Functions/tiktokdl');
 const { updateDatabase } = require('./Database/mysql');
+const message = require('./messageHandler');
 
 
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -17,6 +18,7 @@ async function handleAutoReply(m, sock ,msg ,number) {
         }else{
             number = m.key.remoteJid.split('@')[0];
         }
+        // for mysql database
         const table = "Downloads";
         
         // Youtube Audio
@@ -26,21 +28,10 @@ async function handleAutoReply(m, sock ,msg ,number) {
             const service = "Yt Audio";
             updateDatabase(link, service, number ,table);
             await sock.sendMessage(m.key.remoteJid, { react: { text: '⏳', key: m.key } });
-            
-            const { filePath, title } = await ytadl(link);
-            console.log(filePath);
-                
-                await sock.sendMessage(
-                    m.key.remoteJid,
-                    {
-                        audio: { url: filePath },
-                        mimetype: 'audio/mpeg',
-                        caption: title
+            const { filePath } = await ytadl(link);
+            message.sendVideo(filePath,m,sock);
 
-                    },
-                    { quoted: m }
-                );                  
-            
+                
         }
 
         // Youtube Video
@@ -51,18 +42,8 @@ async function handleAutoReply(m, sock ,msg ,number) {
             updateDatabase(link, service, number ,table);
             console.log(msg);
             await sock.sendMessage(m.key.remoteJid, { react: { text: '⏳', key: m.key } });
-
             const { filePath, title } = await ytvdl(link);
-
-            return await sock.sendMessage(
-                m.key.remoteJid,
-                {
-                    video: { url: filePath },
-                    mimetype: 'video/mp4',
-                    caption: title
-                },
-                { quoted: m }
-            );
+            message.sendVideo(filePath,title,m,sock);
 
         }
 
@@ -71,27 +52,19 @@ async function handleAutoReply(m, sock ,msg ,number) {
         if (msg.includes("http") && msg.includes("tiktok")) {
             const link = msg.match(/\bhttps?:\/\/\S+/gi)[0];  // Extract the link
             const service = "Tiktok";
-            await sock.sendMessage(m.key.remoteJid, { react: { text: '⏳', key: m.key } });
+            message.react('⏳',m ,sock);
             updateDatabase(link, service, number ,table);
-
             let resultUrl = await tiktokdl(link);
+            let caption = ""
+            message.sendVideo(resultUrl,caption,m,sock);
 
-            await sock.sendMessage(
-                m.key.remoteJid,
-                {
-                    video: { url: resultUrl },
-                    mimetype: 'video/mp4'
-                    
-                },
-                { quoted: m }
-            );
         }
-
 
     } catch (error) {
         console.error("Error handling auto-reply:", error);
     }
 }
 
-
 module.exports = { handleAutoReply };
+
+
