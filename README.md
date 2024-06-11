@@ -47,15 +47,15 @@ To get started with the WhatsApp Bot, follow these steps:
             cd WhatsappBot
             npm i
 
-     - Rename config.env.example to config.env
+  - Rename config.env.example to config.env
       
-       - Edit the `config.env` using nano or any text editor
+  - Edit the `config.env` using nano or any text editor
 
-             nano config.env
+        nano config.env
 
-       - Start the bot:
+  - Start the bot:
 
-             npm start
+        npm start
 
 - Stop and Restart:
 
