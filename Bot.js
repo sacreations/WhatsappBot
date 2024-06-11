@@ -118,11 +118,18 @@ const handleAllEvents = async (socket) => {
             if(number !== config.bot_number && msg){
                 console.log(`Number - ${number} |||| message - ${msg}`);
             }
-            if (config.auto_reply){
-                await handleAutoReply(m, socket ,msg ,number);
-            }
-            
+
+
             await handleMessage(m, socket);
+  
+
+ 
+            if (config.auto_reply) {
+                await handleAutoReply(m, socket, msg, number);
+            }
+
+
+            
 
         } catch (error) {
             console.error('Error handling message upsert:', error);
