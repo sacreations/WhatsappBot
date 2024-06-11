@@ -40,9 +40,9 @@ async function ytvdl(link) {
         const info = await ytdl.getInfo(link);
         const title = info.videoDetails.title;
         const filename = generateRandomFilename();
-        const filePath = path.resolve(__dirname, '../', 'downloads', `${filename}.mp4`);
-        const audioPath = path.resolve(__dirname, '../', 'downloads', `${filename}_audio.mp4`);
-        const videoPath = path.resolve(__dirname, '../', 'downloads', `${filename}_video.mp4`);
+        const filePath = path.resolve(__dirname, '../../', 'downloads', `${filename}.mp4`);
+        const audioPath = path.resolve(__dirname, '../../', 'downloads', `${filename}_audio.mp4`);
+        const videoPath = path.resolve(__dirname, '../../', 'downloads', `${filename}_video.mp4`);
 
         // Download video stream
         const videoStream = ytdl(link, { filter: format => format.container === 'mp4' && format.qualityLabel === '360p' })
