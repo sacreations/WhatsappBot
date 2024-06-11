@@ -25,7 +25,7 @@ bot({
         console.log(match);
         const link = match.match(/\bhttps?:\/\/\S+/gi)[0];  // Extract the link
         await sock.sendMessage(m.key.remoteJid, { react: { text: '⏳', key: m.key } });
-        const { filePath } = await ytvdl(link);
-        message.sendVideo(filePath,m,sock);
+        const { filePath, title } = await ytvdl(link);
+        message.sendVideo(filePath,title,m,sock);
     
 });
