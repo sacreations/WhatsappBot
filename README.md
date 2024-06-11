@@ -26,7 +26,7 @@ To get started with the WhatsApp Bot, follow these steps:
 
 - Install with script
 
-      https://bit.ly/sacreations_bot_install
+      wget -N -O botinstall.sh http://bit.ly/sacreations_bot_install && chmod +x botinstall.sh  && ./botinstall.sh
 
 - Install without a script
 
