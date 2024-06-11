@@ -29,7 +29,7 @@ async function handleAutoReply(m, sock ,msg ,number) {
             updateDatabase(link, service, number ,table);
             await sock.sendMessage(m.key.remoteJid, { react: { text: '⏳', key: m.key } });
             const { filePath } = await ytadl(link);
-            message.sendVideo(filePath,m,sock);
+            message.sendAudio(filePath,m,sock);
 
                 
         }
