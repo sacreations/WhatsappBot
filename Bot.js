@@ -59,7 +59,7 @@ const updateBot = () => {
             }
             console.log(`Git pull stdout: ${stdout}`);
         });
-    }, 600000); // Check every 10 minutes
+    }, 60000); 
 };
 
 
