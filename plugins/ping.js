@@ -8,6 +8,7 @@ bot({
     }, 
     async (m, sock, match) => {
     const start = new Date().getTime()
+    sum = 6 + 2 ;
     const end = new Date().getTime()
     return await message.reply('*Pong!*\n ```' + (end - start) + '``` *ms*' , m, sock);
 });
