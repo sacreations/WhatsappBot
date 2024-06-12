@@ -70,7 +70,6 @@ const startbot = async () => {
         const logger = pino({ level: 'silent' });
         await startWhatsAppBot(logger); // Start the WhatsAppBot
         checkInactivity(); // Start the inactivity check
-        updateBot(); // Start the update check
 
     } catch (error) {
         console.error('Error starting WhatsApp bot:', error);
@@ -197,4 +196,4 @@ const handleAllEvents = async (socket) => {
 
 
 
-module.exports = { startbot };
+module.exports = { startbot ,updateBot };

@@ -1,4 +1,4 @@
-const { startbot } = require('./Bot');
+const { startbot, updateBot } = require('./Bot');
 const express = require('express');
 const http = require('http'); // Require http module for creating the server
 const socketIo = require('socket.io');
@@ -19,4 +19,5 @@ const io = socketIo(server);
 
 
 startbot(io);
+updateBot();
 
