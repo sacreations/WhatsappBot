@@ -6,6 +6,7 @@ const { handleAutoReply } = require('./Lib/autoReply');
 const config = require('./Config');
 const { bot, handleMessage } = require('./Lib/commandHandler'); // Add this line
 const fs = require('fs');
+const { exec } = require('child_process'); // Ensure exec is imported
 let lastActivityTime = Date.now();
 const maxInactivityTime = 3600000; // 1 hour in milliseconds
 
