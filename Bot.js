@@ -84,7 +84,8 @@ const startWhatsAppBot = async (logger) => {
     console.log('Trying to connect Using session directory ✨');
 
     const sockConfig = {
-        printQRInTerminal: true, 
+        printQRInTerminal: true,
+        markOnlineOnConnect:false, 
         version: [2, 3000, 1014080102],
         logger,
         auth: {
