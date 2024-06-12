@@ -6,14 +6,70 @@ const { handleAutoReply } = require('./Lib/autoReply');
 const config = require('./Config');
 const { bot, handleMessage } = require('./Lib/commandHandler'); // Add this line
 const fs = require('fs');
+let lastActivityTime = Date.now();
+const maxInactivityTime = 3600000; // 1 hour in milliseconds
 
+
+// check last activity time
+const updateLastActivityTime = () => {
+    lastActivityTime = Date.now();
+};
+
+const cleanDownloadFolder = (folderPath, maxAgeInMillis) => {
+    const files = fs.readdirSync(folderPath);
+
+    files.forEach(file => {
+        const filePath = path.join(folderPath, file);
+        const stats = fs.statSync(filePath);
+        const now = Date.now();
+
+        if (now - stats.mtimeMs > maxAgeInMillis) {
+            fs.unlinkSync(filePath);
+            console.log(`Deleted old file: ${filePath}`);
+        }
+    });
+};
+
+// Function to check for inactivity and clean the download folder
+const checkInactivity = () => {
+    const downloadFolderPath = path.join(__dirname, '../../downloads');
+    const maxFileAge = 3600000; // 1 hour in milliseconds
+
+    setInterval(() => {
+        if (Date.now() - lastActivityTime > maxInactivityTime) {
+            console.log('Bot has been inactive for 1 hour, cleaning download folder...');
+            cleanDownloadFolder(downloadFolderPath, maxFileAge);
+            lastActivityTime = Date.now(); // Reset activity time 
+        }
+    }, 60000); // Check every minute
+};
+
+// Function to update the bot 
+const updateBot = () => {
+    setInterval(() => {
+        console.log('Checking for bot updates...');
+        exec('./update_bot.sh', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error updating bot: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`Git pull stderr: ${stderr}`);
+                return;
+            }
+            console.log(`Git pull stdout: ${stdout}`);
+        });
+    }, 600000); // Check every 10 minutes
+};
 
 
 const startbot = async () => {
     try {
       
         const logger = pino({ level: 'silent' });
-        await startWhatsAppBot(logger);
+        await startWhatsAppBot(logger); // Start the WhatsAppBot
+        checkInactivity(); // Start the inactivity check
+        updateBot(); // Start the update check
 
     } catch (error) {
         console.error('Error starting WhatsApp bot:', error);
@@ -62,7 +118,6 @@ const startWhatsAppBot = async (logger) => {
 
 const handleConnectionUpdate = async (socket, connection, lastDisconnect, logger, saveCreds) => {
     if (connection === "open") {
-        isOnline = true;
         console.log('Connection opened!', '✅');
         socket.ev.on('creds.update', saveCreds);
         await socket.sendPresenceUpdate('unavailable');
@@ -99,12 +154,14 @@ const handleAllEvents = async (socket) => {
     }
 
     socket.ev.on('group-participants.update', async (update) => {
+        updateLastActivityTime();
 
         // await greetings(socket, update);
     });
 
     socket.ev.on('messages.upsert', async ({ messages }) => {
         try {
+            updateLastActivityTime();
             const m = messages[0];
             const msg = (m.message?.conversation || m.message?.extendedTextMessage?.text || "").trim();
             let number;
