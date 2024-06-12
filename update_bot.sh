@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Navigate to the bot's directory
-
+cd WhatsappBot
 
 # Pull the latest changes from the repository
 output=$(git pull)
