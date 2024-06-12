@@ -34,7 +34,7 @@ const cleanDownloadFolder = (folderPath, maxAgeInMillis) => {
 // Function to check for inactivity and clean the download folder
 const checkInactivity = () => {
     const downloadFolderPath = path.join(__dirname, '../../downloads');
-    const maxFileAge = 3600000; // 1 hour in milliseconds
+    const maxFileAge = 360000; // 10 minutes in milliseconds
 
     setInterval(() => {
         if (Date.now() - lastActivityTime > maxInactivityTime) {
