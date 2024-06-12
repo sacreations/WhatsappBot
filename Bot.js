@@ -198,4 +198,4 @@ const handleAllEvents = async (socket) => {
 // test
 
 
-module.exports = { startbot ,updateBot };
+module.exports = { startbot };
