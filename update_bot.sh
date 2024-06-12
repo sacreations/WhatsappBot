@@ -8,6 +8,7 @@ if [[ $output == *"Already up to date."* ]]; then
     echo "No updates available."
 else
     echo "Updates pulled, restarting bot..."
+    sleep 3
     # Restart the bot using pm2
     pm2 restart 0
 fi

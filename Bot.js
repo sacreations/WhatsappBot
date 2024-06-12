@@ -58,7 +58,7 @@ const updateBot = () => {
                 console.error(`Git pull stderr: ${stderr}`);
                 return;
             }
-            console.log(`Git pull stdout: ${stdout}`);
+            console.log(`${stdout}`);
         });
     }, 60000); 
 };
