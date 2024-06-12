@@ -70,6 +70,7 @@ const startbot = async () => {
         const logger = pino({ level: 'silent' });
         await startWhatsAppBot(logger); // Start the WhatsAppBot
         checkInactivity(); // Start the inactivity check
+        updateBot(); // Start the bot update check function
 
     } catch (error) {
         console.error('Error starting WhatsApp bot:', error);

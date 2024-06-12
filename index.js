@@ -19,5 +19,4 @@ const io = socketIo(server);
 
 
 startbot(io);
-updateBot();
 
