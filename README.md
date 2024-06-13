@@ -10,7 +10,7 @@ Welcome to the Simple WhatsApp Bot project! This bot leverages the Baileys libra
 
 **Please note that this project is still under development and not yet finished.**
 
-`latest updated date:- 2024.06.12`
+`latest updated date:- 2024.06.13`
 
 ## Features
 
