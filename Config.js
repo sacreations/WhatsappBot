@@ -10,7 +10,7 @@ const config = {
     // Options
     db_update:process.env.DB_UPDATE || false,
     auto_reply:process.env.AUTO_REPLY || false,
-    start_message:process.env.DISABLE_START_MESSAGE || false,
+    disable_start_message:process.env.DISABLE_START_MESSAGE || false,
     PREFIX:process.env.PREFIX || ".",
 
 

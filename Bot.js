@@ -123,7 +123,7 @@ const handleConnectionUpdate = async (socket, connection, lastDisconnect, logger
         console.log('Connection opened!', '✅');
         socket.ev.on('creds.update', saveCreds);
         await socket.sendPresenceUpdate('unavailable');
-        if(config.start_message){
+        if(!config.disable_start_message){
             const recipient = `${config.bot_number}@s.whatsapp.net`;
             const message = 'Bot has started successfully!';
             await socket.sendMessage(recipient, { text: message });
