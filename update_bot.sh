@@ -10,5 +10,5 @@ else
     echo "Updates pulled, restarting bot..."
     sleep 3
     # Restart the bot using pm2
-    pm2 restart 0
+    pm2 restart Bot
 fi
