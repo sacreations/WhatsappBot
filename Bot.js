@@ -31,18 +31,15 @@ const cleanDownloadFolder = (folderPath, maxAgeInMillis) => {
     });
 };
 
-// Function to check for inactivity and clean the download folder
-const checkInactivity = () => {
+
+const cleanDownloads = () => {
     const downloadFolderPath = path.join(__dirname, '../../downloads');
     const maxFileAge = 360000; // 10 minutes in milliseconds
 
     setInterval(() => {
-        if (Date.now() - lastActivityTime > maxInactivityTime) {
-            console.log('Bot has been inactive for 1 hour, cleaning download folder...');
-            cleanDownloadFolder(downloadFolderPath, maxFileAge);
-            lastActivityTime = Date.now(); // Reset activity time 
-        }
-    }, 60000); // Check every minute
+        console.log('cleaning download folder...');
+        cleanDownloadFolder(downloadFolderPath, maxFileAge);
+    }, 360000); // Check every 10 minutes
 };
 
 // Function to update the bot 
@@ -69,7 +66,7 @@ const startbot = async () => {
       
         const logger = pino({ level: 'silent' });
         await startWhatsAppBot(logger); // Start the WhatsAppBot
-        checkInactivity(); // Start the inactivity check
+        cleanDownloads(); // Start the inactivity check
         updateBot(); // Start the bot update check function
 
     } catch (error) {
