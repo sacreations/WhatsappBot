@@ -5,8 +5,7 @@ const config = require('../../Config');
 isupdatedtodatabase = config.db_update;
 
 // MySQL Connection Pool
-if(isupdatedtodatabase){
-    const pool = mysql.createPool({
+const pool = mysql.createPool({
     connectionLimit: 10,
     host: config.db_host,
     user: config.db_user,
@@ -15,7 +14,7 @@ if(isupdatedtodatabase){
     port: config.db_port,
     charset: 'utf8mb4' // Set the character set to support emojis
 });
-}
+
 
 
 // Functions
