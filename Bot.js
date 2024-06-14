@@ -159,8 +159,6 @@ const handleAllEvents = async (socket) => {
 
     socket.ev.on('group-participants.update', async (update) => {
         updateLastActivityTime();
-
-        // await greetings(socket, update);
     });
 
     socket.ev.on('messages.upsert', async ({ messages }) => {
