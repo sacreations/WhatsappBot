@@ -40,6 +40,13 @@ async function ytvdl(link) {
         const info = await ytdl.getInfo(link);
         const title = info.videoDetails.title;
         const filename = generateRandomFilename();
+
+        const downloadsDir = path.resolve(__dirname, '../../', 'downloads');
+        if (!fs.existsSync(downloadsDir)) {
+            fs.mkdirSync(downloadsDir, { recursive: true });
+            console.log('Created downloads directory:', downloadsDir);
+        }
+
         const filePath = path.resolve(__dirname, '../../', 'downloads', `${filename}.mp4`);
         const audioPath = path.resolve(__dirname, '../../', 'downloads', `${filename}_audio.mp4`);
         const videoPath = path.resolve(__dirname, '../../', 'downloads', `${filename}_video.mp4`);

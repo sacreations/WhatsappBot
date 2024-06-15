@@ -33,6 +33,11 @@ const cleanDownloadFolder = (folderPath, maxAgeInMillis) => {
 
 
 const cleanDownloads = () => {
+    const downloadsDir = path.resolve(__dirname, '../../', 'downloads');
+    if (!fs.existsSync(downloadsDir)) {
+        fs.mkdirSync(downloadsDir, { recursive: true });
+        console.log('Created downloads directory:', downloadsDir);
+    }
     const downloadFolderPath = path.join(__dirname, '../../downloads');
     const maxFileAge = 360000; // 10 minutes in milliseconds
 
