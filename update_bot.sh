@@ -20,3 +20,5 @@ else
     message="updating."
     pm2 restart Bot
 fi
+
+# test
