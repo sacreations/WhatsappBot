@@ -94,7 +94,7 @@ async function handleAutoReply(m, sock ,msg ,number) {
             }
 
             if(m.key.remoteJid.includes(allowed_groups2)){
-                if (msg === "@everyone") {
+                if (msg.split(' ')[0] === "@everyone") {
                     const mentions = await mentionAllParticipants(m, sock);
                     if (mentions) {
                         await sock.sendMessage(m.key.remoteJid, { text: mentions.mentionsText, mentions: mentions.participants },{ quoted: m });
