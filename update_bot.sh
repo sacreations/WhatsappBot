@@ -9,9 +9,6 @@ fi
 echo -e "\e[36mStarting the update process for the dev_test branch...\e[0m"
 
 
-# Ensure we are on the dev_test branch
-git checkout dev_test
-
 # Pull the latest changes from the dev_test branch
 output=$(git pull origin dev_test)
 

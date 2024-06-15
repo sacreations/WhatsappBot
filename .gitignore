@@ -4,4 +4,3 @@ config.env
 package-lock.json
 Lib/downloads/
 install.sh
-update_bot.sh
