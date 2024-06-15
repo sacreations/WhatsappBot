@@ -1,12 +1,9 @@
 const ffmpeg = require('fluent-ffmpeg');
-const ffmpegPath = require('ffmpeg-static');
 const {ytvdl,ytadl} = require('./Functions/Download_Functions/youtubedl');
 const tiktokdl = require('./Functions/Download_Functions/tiktokdl');
 const { updateDatabase } = require('./Database/mysql');
 const message = require('./messageHandler');
 
-
-ffmpeg.setFfmpegPath(ffmpegPath);
 
 allowed_groups = "@g.us";
 
