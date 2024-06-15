@@ -13,7 +13,17 @@ allowed_groups2 = "@g.us";
 async function mentionAllParticipants(m, sock) {
     try {
         const groupMetadata = await sock.groupMetadata(m.key.remoteJid);
-        const participants = groupMetadata.participants.map(participant => participant.id._serialized);
+        console.log("Group Metadata:", groupMetadata);
+
+        const participants = groupMetadata.participants.map(participant => {
+            console.log("Participant:", participant);
+            if (participant.id && participant.id._serialized) {
+                return participant.id._serialized;
+            } else {
+                throw new Error(`Invalid participant data: ${JSON.stringify(participant)}`);
+            }
+        });
+
         const mentionsText = participants.map(participant => `@${participant.split('@')[0]}`).join(' ');
 
         return { mentionsText, participants };
