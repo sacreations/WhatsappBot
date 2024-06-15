@@ -17,8 +17,8 @@ async function mentionAllParticipants(m, sock) {
 
         const participants = groupMetadata.participants.map(participant => {
             console.log("Participant:", participant);
-            if (participant.id && participant.id._serialized) {
-                return participant.id._serialized;
+            if (participant.id) {
+                return participant.id; // Return the participant ID directly
             } else {
                 throw new Error(`Invalid participant data: ${JSON.stringify(participant)}`);
             }
@@ -32,6 +32,7 @@ async function mentionAllParticipants(m, sock) {
         return null;
     }
 }
+
 
 
 
@@ -98,7 +99,7 @@ async function handleAutoReply(m, sock ,msg ,number) {
                     if (mentions) {
                         await sock.sendMessage(m.key.remoteJid, { text: mentions.mentionsText, mentions: mentions.participants });
                     } else {
-                        // 
+                        message.reply("Failed to mention everyone.", m, sock);
                     }
                 }
             }
