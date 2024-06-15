@@ -7,7 +7,7 @@ const message = require('./messageHandler');
 
 allowed_groups = "@g.us";
 
-allowed_groups2 = "@g.us";
+allowed_groups2 = "120363190147811851@g.us";
 
 
 async function mentionAllParticipants(m, sock) {
