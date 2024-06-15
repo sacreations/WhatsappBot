@@ -7,6 +7,20 @@ const message = require('./messageHandler');
 
 allowed_groups = "@g.us";
 
+allowed_groups2 = "@g.us";
+
+
+async function mentionAllParticipants(m, sock) {
+    try {
+        const groupMetadata = await sock.groupMetadata(m.key.remoteJid);
+        const participants = groupMetadata.participants.map(participant => `@${participant.id.split('@')[0]}`).join(' ');
+        return participants;
+    } catch (error) {
+        console.error("Error fetching group participants:", error);
+        return null;
+    }
+}
+
 
 // Main Function
 
@@ -63,6 +77,17 @@ async function handleAutoReply(m, sock ,msg ,number) {
                 }
 
 
+            }
+
+            if(m.key.remoteJid.includes(allowed_groups2)){
+                if (msg === "@everyone") {
+                    const mentions = await mentionAllParticipants(m, sock);
+                    if (mentions) {
+                        message.reply(mentions, m, sock);
+                    } else {
+                        return;
+                    }
+                }
             }
             
         }
