@@ -10,7 +10,7 @@ echo -e "\e[36mStarting the update process for the dev_test branch...\e[0m"
 
 
 # Pull the latest changes from the dev_test branch
-output=$(git pull origin dev_test)
+output=$(git pull origin dev_test 2>&1)
 
 # Check if the output contains "Already up to date."
 if [[ $output == *"Already up to date."* ]]; then
