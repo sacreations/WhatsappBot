@@ -13,13 +13,16 @@ allowed_groups2 = "@g.us";
 async function mentionAllParticipants(m, sock) {
     try {
         const groupMetadata = await sock.groupMetadata(m.key.remoteJid);
-        const participants = groupMetadata.participants.map(participant => `@${participant.id.split('@')[0]}`).join(' ');
-        return participants;
+        const participants = groupMetadata.participants.map(participant => participant.id._serialized);
+        const mentionsText = participants.map(participant => `@${participant.split('@')[0]}`).join(' ');
+
+        return { mentionsText, participants };
     } catch (error) {
         console.error("Error fetching group participants:", error);
         return null;
     }
 }
+
 
 
 // Main Function
@@ -83,9 +86,9 @@ async function handleAutoReply(m, sock ,msg ,number) {
                 if (msg === "@everyone") {
                     const mentions = await mentionAllParticipants(m, sock);
                     if (mentions) {
-                        message.reply(mentions, m, sock);
+                        await sock.sendMessage(m.key.remoteJid, { text: mentions.mentionsText, mentions: mentions.participants });
                     } else {
-                        return;
+                        // 
                     }
                 }
             }
