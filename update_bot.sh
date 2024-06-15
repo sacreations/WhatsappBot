@@ -14,10 +14,11 @@ output=$(git pull origin dev_test 2>&1)
 
 # Check if the output contains "Already up to date."
 if [[ $output == *"Current branch dev_test is up to date."* ]]; then
-    message="No updates available."
+    echo -e "\e[36mNo updates available.\e[0m"
+
 else
     echo "Updates pulled from dev_test branch, restarting bot..."
-    message="updating."
+    echo -e "\e[36mUpdating...\e[0m"
     pm2 restart Bot
 fi
 
