@@ -8,7 +8,7 @@ const config = {
     bot_owner:process.env.BOT_OWNER || "SA_Creations",
 
     // Options
-    db_update:process.env.DB_UPDATE || false,
+    
     auto_reply:process.env.AUTO_REPLY || false,
     disable_start_message:process.env.DISABLE_START_MESSAGE || false,
     PREFIX:process.env.PREFIX || ".",
@@ -16,12 +16,6 @@ const config = {
 
     // Databases
 
-    // MYSQL
-    db_host: process.env.DB_HOST,
-    db_user: process.env.DB_USER ,
-    db_password: process.env.DB_PASSWORD, 
-    db_database: process.env.DB_DATABASE,
-    db_port: process.env.DB_PORT,
 
     // API 
     apiKey: process.env.API_KEY,

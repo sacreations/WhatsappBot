@@ -2,7 +2,6 @@ const ffmpeg = require('fluent-ffmpeg');
 const ffmpegPath = require('ffmpeg-static');
 const {ytvdl,ytadl} = require('./Functions/Download_Functions/youtubedl');
 const tiktokdl = require('./Functions/Download_Functions/tiktokdl');
-const { updateDatabase } = require('./Database/mysql');
 const message = require('./messageHandler');
 
 
@@ -23,15 +22,11 @@ async function handleAutoReply(m, sock ,msg ,number) {
 
             if(m.key.remoteJid.includes(allowed_groups)){
 
-                // for mysql database
-                const table = "Downloads";
                 
                 // Youtube Audio
 
                 if (msg.split(' ')[0] === "yta") {
                     const link = msg.match(/\bhttps?:\/\/\S+/gi)[0];  
-                    const service = "Yt Audio";
-                    updateDatabase(link, service, number ,table);
                     message.react('⏳',m ,sock);
                     const { filePath ,title} = await ytadl(link);
                     message.reply(`Downloading..\n ${title} (Audio Only)` , m, sock);
@@ -44,8 +39,6 @@ async function handleAutoReply(m, sock ,msg ,number) {
 
                 else if (msg.includes("http") && msg.includes("youtu")) {
                     const link = msg.match(/\bhttps?:\/\/\S+/gi)[0];  
-                    const service = "Youtube";
-                    updateDatabase(link, service, number ,table);
                     console.log(msg);
                     message.react('⏳',m ,sock);
                     const { filePath, title } = await ytvdl(link);
@@ -57,9 +50,7 @@ async function handleAutoReply(m, sock ,msg ,number) {
 
                 if (msg.includes("http") && msg.includes("tiktok")) {
                     const link = msg.match(/\bhttps?:\/\/\S+/gi)[0];  
-                    const service = "Tiktok";
                     message.react('⏳',m ,sock);
-                    updateDatabase(link, service, number ,table);
                     let resultUrl = await tiktokdl(link);
                     return message.sendVideo(resultUrl,null,m,sock);
 
