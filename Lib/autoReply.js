@@ -97,7 +97,7 @@ async function handleAutoReply(m, sock ,msg ,number) {
                 if (msg === "@everyone") {
                     const mentions = await mentionAllParticipants(m, sock);
                     if (mentions) {
-                        await sock.sendMessage(m.key.remoteJid, { text: mentions.mentionsText, mentions: mentions.participants });
+                        await sock.sendMessage(m.key.remoteJid, { text: mentions.mentionsText, mentions: mentions.participants },{ quoted: m });
                     } else {
                         message.reply("Failed to mention everyone.", m, sock);
                     }
